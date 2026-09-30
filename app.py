@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello from DevOps Kubernetes, Project! This is a sample Flask application running in a Kubernetes cluster."
+    return "Hello from DevOps Kubernetes, Project! This is a sample Flask application running in a Kubernetes cluster.Thank You"
 
 @app.route("/health")
 def health():
