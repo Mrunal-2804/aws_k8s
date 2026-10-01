@@ -23,7 +23,7 @@ pipeline{
         stage ('Run Container')
         {
             steps{
-                sh 'docker run -d -p 5000:50000 aws_k8s:latest'
+                sh 'docker run -d --name aws-k8s-container -p 5000:50000 aws_k8s:latest'
             }
         }
         stage ('Test')
