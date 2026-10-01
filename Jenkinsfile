@@ -43,22 +43,20 @@ pipeline{
                 sh 'docker push mrunal2804/aws-k8s'
             }
         }
-        stage ('Pull Image'){
-            steps{
-                sh 'docker pull mrunal2804/aws-k8s'
+        stage ('Deploy to K8s')
+        {
+            steps:
+            {
+                sh 'kubectl apply -f Deployment.yaml'
+                sh 'kubectl apply -f Service.yaml'
             }
         }
-
-        stage ('Run Container')
-        {
-            steps{
-                sh 'docker run -d --name aws-k8s-container -p 5000:5000 mrunal2804/aws-k8s'
-            }
-        }
-        stage ('Test')
-        {
-            steps{
-                sh 'curl http://localhost:5000/health'
+        stage('Verify') {
+            steps {
+                sh '''
+                    kubectl get pods
+                    kubectl get svc
+                '''
             }
         }
     }
