@@ -1,23 +1,22 @@
-apiversion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: depfile
 
 spec:
   replicas: 2
-  Selector:
-    matchables:
+  selector:
+    matchLabels:
       app: depfile
 
   template:
     metadata:
       labels:
         app: depfile
+
     spec:
       containers:
-      - name: depfile_container
-        image: mrunal2804/aws-k8s:latest
-        ports:
-        - containerPort: 5000
-
-
+        - name: depfile-container
+          image: mrunal2804/aws-k8s:latest
+          ports:
+            - containerPort: 5000
